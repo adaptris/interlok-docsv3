@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interlok Documentation</title>
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="./css/panels.css">
+  <style>
+    :root {
+      --theme-color: #182B51;
+      --theme-color-secondary: #C51162;
+	  background-color: var(--theme-color) !important;
+    }
+    .e404-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -250px;
+      margin-left: -400px;
+      font-weight: 300;
+      display: flex;
+      flex-direction: row;
+    }
+    .message-box {
+      height: 400px;
+      min-width: 380px;
+	  max-width: 380px;
+	  margin-left: 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+	  color: #ffffff;
+    }
+    .message-box h1 {
+      font-size: 60px;
+      line-height: 46px;
+      margin-bottom: 20px;
+    }
+    .buttons-con a {
+	  margin-top: 20px;
+      padding: 8px 25px;
+      font-weight: bold;
+      margin-right: 10px
+    }
+    .logo-box {
+      position: relative;
+      background-image: url(./svg/adaptris-logo-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      min-width: 400px;
+	  max-width: 400px;
+      height: 400px;
+      background-size: cover;  
+    }
+  </style>
+</head>
+<body>
+  <div class="e404-box">
+    <div class="logo-box">
+    </div>
+    <div class="message-box">
+      <h1>404</h1>
+      <p>The page you're looking for might have been removed, had its name changed or is temporarily unavailable</p>
+      <div class="buttons-con">
+        <a href="https://interlok.adaptris.net/interlok-docs" class="btn btn-secondary">Docs Home Page</a>
+        <a href="https://interlok.adaptris.net/interlok-docs/#/pages/overview/changelog" class="btn btn-secondary">Change Log</a>
+       </div>
+    </div>
+  </div>
+</body>
+</html>

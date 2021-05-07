@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interlok Documentation</title>
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="./css/panels.css">
+  
+  <style>
+	:root {
+		--content-max-width: 85em;
+		--theme-color-secondary: #C51162;
+		--sidebar-nav-pagelink-background-image--active:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.2' height='7' viewBox='0 0 11.2 7'%3E%3Cpath d='M1.5 1.5l4.1 4 4.1-4' stroke-width='1.5' stroke='rgb%28197, 17, 98%29' fill='none' stroke-linecap='square' stroke-linejoin='miter' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+		--sidebar-nav-pagelink-background-image--collapse:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='11.2' viewBox='0 0 7 11.2'%3E%3Cpath d='M1.5 1.5l4 4.1 -4 4.1' stroke-width='1.5' stroke='rgb%28197, 17, 98%29' fill='none' stroke-linecap='square' stroke-linejoin='miter' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+		--sidebar-nav-pagelink-background-image--loaded:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.2' height='7' viewBox='0 0 11.2 7'%3E%3Cpath d='M1.5 1.5l4.1 4 4.1-4' stroke-width='1.5' stroke='rgb%28197, 17, 98%29' fill='none' stroke-linecap='square' stroke-linejoin='miter' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+	}
+	footer .content {
+		margin-left: var(--sidebar-width);
+	}
+	footer .info {
+		position: relative;
+		max-width: var(--content-max-width);
+		margin: 0 auto;
+		padding: 2rem 45px;
+	}
+	footer .info .rbi-relx {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+	}
+    .sidebar-nav li.active>a, .sidebar-nav li.collapse>a {
+        background-color: var(--sidebar-toggle-background);
+    }
+    .markdown-section h1 {
+        color: var(--sidebar-name-color);
+    }
+    .markdown-section h2 {
+        color: var(--theme-color-secondary);
+    }
+	.markdown-section a {
+		color: var(--theme-color);
+	}
+	.quick-links {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+        justify-content: space-between;
+	}
+	
+	.interlok-docs-title {
+	    background-image: url(./svg/adaptris-logo.svg);
+		background-repeat: no-repeat;
+		background-position: 0 50%;
+		padding-left: 24px;
+		padding-bottom: 2px;
+		background-size: 20px;
+		font-weight: bold;
+	}
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <footer>
+    <section class="content">
+      <div class="info">
+        <hr />
+        <div>
+          <span>&copy;2021 Adaptris. All rights reserved.</span><br/>
+        </div>
+        <div class="rbi-relx">
+          <div class="company-logo">
+            <a href="https://risk.lexisnexis.com/group" target="_blank"><img id="rbi-logo" src="./images/RSG-Logo_POS_RGB.png" alt="LexisNexis Risk Solutions Group" width="140px"></a>
+          </div>
+          <div class="company-logo adaptris-logo">
+            <a href="https://www.adaptris.com" target="_blank"><img id="adaptris-logo" src="./images/company_logo.png" alt="Company logo" width="140px"/></a>
+          </div>
+          <div class="company-logo">
+            <a href="https://www.relx.com" target="_blank"><img id="relx-logo" src="./images/relx-logo.png" alt="RELX logo" width="140px"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+  <script>
+    window.$docsify = {
+      name: '<span class="interlok-docs-title" />Interlok Docs</span>',
+      // logo: '/images/company_logo.png',
+      repo: '',
+      loadSidebar: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/': '/pages/README.md',
+      },
+      notFoundPage: '404.md',
+      loadNavbar: true,
+      autoHeader: true,
+      relativePath: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      search: {
+        paths: 'auto',
+        // Headline depth, 1 - 6
+        depth: 5
+      },
+      noEmoji: true, // Emojis Cause some rendering issues when we have something like :string: which happens a lot e.g. service:jmx:jmxmp:
+      themeColor: '#182B51',
+      coverpage: false,
+      formatUpdated: '{YYYY}-{MM}-{DD}T{HH}:{mm}:{ss}',
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(content) {
+            return (
+              content +
+              '\n----\n' +
+              '*Last modified {docsify-updated}*'
+            );
+          });
+        },
+        function(hook, vm) {
+          // Convert things like {% include important%} to a markdown equivalent
+          hook.beforeEach(function(content) {
+            content = content.replace(/\{\% include (.*)\.html content\=\"(.*)\" \%\}/g, function(m, p1, p2) {
+              var type;
+              if (p1 === "important" || p1 === "warning") {
+                type = "!>";
+              } else {
+                type = "?>";
+              }
+              return type + " " + (p1 ? "**" + p1.toUpperCase() + "** " : "") + p2;
+            });
+            return content;
+          });
+        },
+        function(hook, vm) {
+          // Add swagger iframe resize function when an iframe with the class swagger-iframe is detected
+          hook.beforeEach(function(content) {
+            if (content.indexOf("class=\"swagger-iframe\"") > -1) {
+              window.resizeSwaggerIframe = function resizeSwaggerIframe(iframe) {
+                setTimeout(function() {
+				  // This is hacky but we want the iframe to be resized quickly but also making sure it is resized if there is a slowdown
+                  iframe.height = iframe.contentWindow.document.documentElement.scrollHeight + "px";
+					setTimeout(function() {
+					  iframe.height = iframe.contentWindow.document.documentElement.scrollHeight + "px";
+					}, 400);
+                }, 300);
+              }
+              window.monitorSwaggerIframeContentHeight = function monitorSwaggerIframeContentHeight(iframe) {
+                resizeSwaggerIframe(iframe);
+                iframe.contentWindow.addEventListener("click", event => {
+                  resizeSwaggerIframe(iframe);
+                });
+              }
+            } else {
+              window.resizeSwaggerIframe = undefined;
+              window.monitorSwaggerIframeContentHeight = undefined;
+            }
+            return content;
+          });
+        }
+      ]
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-groovy.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-properties.min.js"></script>
+</body>
+</html>
