@@ -1,6 +1,6 @@
 # Getting Started With Interlok V3
 
-> **Summary:** This is the Interlok Documentation website.  Choose a document and start reading.
+> **Summary:** This is the **Interlok V3** Documentation website. Choose a document and start reading.<br/>If you need documentation for Interlok V4 please go to https://interlok.adaptris.net/interlok-docs.
 
 Of course there must be an obligatory [xkcd](http://xkcd.com) reference.
 
