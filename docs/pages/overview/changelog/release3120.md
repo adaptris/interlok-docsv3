@@ -24,19 +24,19 @@ The 3.12.0.3 release resolves a few issues; It does not have an installer, and o
 
 If you're affected by this issues, then you should update your dependency tree to use `com.adaptris:interlok-core:3.12.0.3-RELEASE`
 
-- 'INTERLOK-3846' - Remove the deprecated produce-destination/consume-destination
+- 'INTERLOK-3846' - Update 3.12 components with missing deprecation notices (so users can trust gradle check before updating to v4)
 - 'INTERLOK-3850' - Jetty Consumer - Possible threading issue when initializing the handlers
 - Bump Log4j from 2.14 to 2.17
 
 ## Version 3.12.0.2 ##
 
-Release Date : 2021-07-01
+Release Date : 2021-07-06
 
 The 3.12.0.2 release resolves a single issue; It does not have an installer, and only affects the following artifact jars since they are built from the same multi-module repository: _interlok-boot.jar, interlok-client.jar, interlok-client-jmx.jar, interlok-common.jar, interlok-core.jar, interlok-core-apt.jar, interlok-logging.jar_
 
 If you're affected by this issue, then you should update your dependency tree to use `com.adaptris:interlok-core:3.12.0.2-RELEASE`
 
-- 'INTERLOK-3818' - Reuse operationTimeout within the ShutdownHandler
+- 'INTERLOK-3818' - Shutdown Operation Timeout now configurable (ShutdownHandler should be configurable)
 
 ## Version 3.12.0.1 ##
 
